@@ -530,11 +530,11 @@ class EngTagger
     text = text.gsub(/\W{10,}/o, " ")
 
     # Put quotes into a standard format
-    #text = text.gsub(/`(?!`)(?=.*\w)/o, "` ") # Shift left quotes off text
-    #text = text.gsub(/"(?=.*\w)/o, " `` ") # Convert left quotes to `` 
-    #text = text.gsub(/(\W|^)'(?=.*\w)/o){$1 ? $1 + " ` " : " ` "} # Convert left quotes to ` 
-    #text = text.gsub(/"/, " '' ") # Convert (remaining) quotes to ''
-    #text = text.gsub(/(\w)'(?!')(?=\W|$)/o){$1 + " ' "} # Separate right single quotes
+    text = text.gsub(/`(?!`)(?=.*\w)/o, "` ") # Shift left quotes off text
+    text = text.gsub(/"(?=.*\w)/o, " # ") # Convert left quotes to `` 
+    text = text.gsub(/(\W|^)'(?=.*\w)/o){$1 ? $1 + " ` " : " ` "} # Convert left quotes to ` 
+    text = text.gsub(/"/, " # ") # Convert (remaining) quotes to ''
+    text = text.gsub(/(\w)'(?!')(?=\W|$)/o){$1 + " ' "} # Separate right single quotes
     
     # Handle all other punctuation
     text = text.gsub(/--+/o, " - ") # Convert and separate dashes
@@ -545,9 +545,9 @@ class EngTagger
     text = text.gsub(/([\!\?#\$%;~|])/o){" " + $1 + " "} # Shift off other ``standard'' punctuation
 
     # English-specific contractions
-    text = text.gsub(/([A-Za-z])'([dms])\b/o){$1 + " '" + $2}  # Separate off 'd 'm 's
-    text = text.gsub(/n't\b/o, " n't")                     # Separate off n't      
-    text = text.gsub(/'(ve|ll|re)\b/o){" '" + $1}         # Separate off 've, 'll, 're
+    #text = text.gsub(/([A-Za-z])'([dms])\b/o){$1 + " '" + $2}  # Separate off 'd 'm 's
+    #text = text.gsub(/n't\b/o, " n't")                     # Separate off n't      
+    #text = text.gsub(/'(ve|ll|re)\b/o){" '" + $1}         # Separate off 've, 'll, 're
     result = text.split(' ')
     return result
   end  
