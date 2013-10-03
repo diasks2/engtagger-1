@@ -530,11 +530,11 @@ class EngTagger
     text = text.gsub(/\W{10,}/o, " ")
 
     # Put quotes into a standard format
-    text = text.gsub(/`(?!`)(?=.*\w)/o, "` ") # Shift left quotes off text
-    text = text.gsub(/"(?=.*\w)/o, " # ") # Convert left quotes to `` 
-    text = text.gsub(/(\W|^)'(?=.*\w)/o){$1 ? $1 + " ` " : " ` "} # Convert left quotes to ` 
-    text = text.gsub(/"/, " # ") # Convert (remaining) quotes to ''
-    text = text.gsub(/(\w)'(?!')(?=\W|$)/o){$1 + " ' "} # Separate right single quotes
+    text = text.gsub(/`(?!`)(?=.*\w)/o, "∫ ") # Shift left quotes off text
+    text = text.gsub(/"(?=.*\w)/o, " ∬ ") # Convert left quotes to `` 
+    text = text.gsub(/(\W|^)'(?=.*\w)/o){$1 ? $1 + " ∫ " : " ∫ "} # Convert left quotes to ` 
+    text = text.gsub(/"/, " ∬ ") # Convert (remaining) quotes to ''
+    text = text.gsub(/(\w)'(?!')(?=\W|$)/o){$1 + " ∫ "} # Separate right single quotes
     
     # Handle all other punctuation
     text = text.gsub(/--+/o, " - ") # Convert and separate dashes
