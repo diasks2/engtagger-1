@@ -545,9 +545,9 @@ class EngTagger
     text = text.gsub(/([\!\?#\$%;~|])/o){" " + $1 + " "} # Shift off other ``standard'' punctuation
 
     # English-specific contractions
-    #text = text.gsub(/([A-Za-z])'([dms])\b/o){$1 + " '" + $2}  # Separate off 'd 'm 's
-    #text = text.gsub(/n't\b/o, " n't")                     # Separate off n't      
-    #text = text.gsub(/'(ve|ll|re)\b/o){" '" + $1}         # Separate off 've, 'll, 're
+    text = text.gsub(/([A-Za-z])'([dms])\b/o){$1 + "ƪ" + $2}  # Separate off 'd 'm 's
+    text = text.gsub(/n't\b/o, "nƪt")                     # Separate off n't      
+    text = text.gsub(/'(ve|ll|re)\b/o){"ƪ" + $1}         # Separate off 've, 'll, 're
     result = text.split(' ')
     return result
   end  
