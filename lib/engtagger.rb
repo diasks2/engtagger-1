@@ -539,7 +539,11 @@ class EngTagger
     # Handle all other punctuation
     text = text.gsub(/--+/o, " - ") # Convert and separate dashes
     text = text.gsub(/,(?!\d)/o, " , ") # Shift commas off everything but numbers
-    text = text.gsub(/:/o, " :") # Shift semicolons off
+    if text.include? ":"
+      unless (/\A\d+/ === text.to_s.partition(':').last[0]) && (/\A\d+/ === text.to_s.partition(':').first[-1])
+        text = text.gsub(/:/o, " :") # Shift semicolons off
+      end
+    end  
     text = text.gsub(/(\.\.\.+)/o){" " + $1 + " "} # Shift ellipses off 
     text = text.gsub(/([\(\[\{\}\]\)])/o){" " + $1 + " "} # Shift off brackets
     text = text.gsub(/([\!\?#\$%;~|])/o){" " + $1 + " "} # Shift off other ``standard'' punctuation
